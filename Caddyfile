@@ -1,0 +1,13 @@
+# Example caddy configuration file.
+
+{$DOMAIN} {
+	tls {
+		dns duckdns {$DUCKDNS_TOKEN}
+	}
+
+	# Proxy requests to /api/* to the backend.
+	reverse_proxy /api/* 0.0.0.0:3000
+
+	# Proxy all other requests to the dev server.
+	reverse_proxy 0.0.0.0:4200
+}

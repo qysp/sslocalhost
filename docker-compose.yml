@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  sslocalhost:
+    container_name: sslocalhost
+    build: .
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    network_mode: host
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    env_file:
+      - .env
+
+volumes:
+  caddy_data:
+  caddy_config:
+
